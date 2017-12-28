@@ -1,0 +1,26 @@
+{
+  "name": "todo-list",
+  "version": "1.0.0",
+  "description": "Practice for HackReactor TA",
+  "main": "server.js",
+  "scripts": {
+    "test": "start",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nadayulu/todoList.git"
+  },
+  "author": "David Yonwook Chung",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nadayulu/todoList/issues"
+  },
+  "homepage": "https://github.com/Nadayulu/todoList#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "mongoose": "^4.13.8",
+    "nodemon": "^1.14.3"
+  }
+}
