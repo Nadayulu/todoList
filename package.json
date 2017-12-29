@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "start",
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "mongo-win": "md mongo-db & \"C:/Program Files/MongoDb/Server/3.6/bin/mongod.exe\" --dbpath mongo-db"
   },
   "repository": {
     "type": "git",

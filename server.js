@@ -13,7 +13,11 @@ console.log(dbuser);
 var dbpw = process.env.DBPASSWORD;
 
 var mongoose = require('mongoose');
-mongoose.connect(`mongodb://localhost:8000/test`);
+mongoose.connect(`mongodb://localhost:27017/test`, function(err, db) {
+    if( err ) {
+        console.log("THIS IS DB ERR", err)
+    }
+});
 
 var Bear = require('./app/models/bear');
 
