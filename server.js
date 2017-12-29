@@ -55,7 +55,30 @@ router.route('/bears')
     })
   })
 
+router.route('/bears/:bear_id')
+  .get(function(req, res) {
+      Bear.findById(req.params.bear_id, function(err, bear) {
+          if (err) {
+              res.send("That bear does not exist!", err)
+          }
+          res.json(bear);
+      })
+  })
+  .put(function(req, res) {
+      Bear.findById(req.params.bear_id, function(err, bear) {
+          if(err) 
+            res.send(err);
+        
+          bear.name = req.body.name;
 
+          bear.save(function(err) {
+              if(err)
+                res.send("Couldnt update the Bear!", err);
+            
+              res.json({message: "Bear has been successfuly updated!"})
+          })
+      })
+  })
 
 //REGISTERING OUR ROUTES
 app.use('/api', router); // all of our routes will be prefixed with  /api
