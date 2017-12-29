@@ -13,7 +13,7 @@ console.log(dbuser);
 var dbpw = process.env.DBPASSWORD;
 
 var mongoose = require('mongoose');
-mongoose.connect(`mongodb://localhost:27017/test`, function(err, db) {
+mongoose.connect(`mongodb://localhost:27017/database`, function(err, db) {
     if( err ) {
         console.log("THIS IS DB ERR", err)
     }
@@ -45,6 +45,14 @@ router.route('/bears')
           }
           res.json({message: 'BEAR CREATED!'})
       })
+  })
+  .get(function(req, res) {
+    Bear.find(function(err, bears) {
+        if(err) {
+            console.log("Couldnt find the bears..", err);
+        }
+        res.json(bears);
+    })
   })
 
 
