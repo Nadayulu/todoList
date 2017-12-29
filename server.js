@@ -2,14 +2,18 @@
 var express = require('express'); //grab express dependencies
 var app = express(); // app is using our express dependencies
 var bodyParser = require('body-parser'); //so that we can use our bodyParser later
+require('dotenv').config();
 
 app.use(bodyParser.urlencoded({ extended: true})); //configures app to use the bodyparser so that we can get data from a POST
 app.use(bodyParser.json());
 
 var port = process.env.PORT || 8000;
+var dbuser = process.env.DBUSERNAME;
+console.log(dbuser);
+var dbpw = process.env.DBPASSWORD;
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://node:node@novus.modulusmongo.net:27017/Iganiq8o');
+mongoose.connect(`mongodb://localhost:8000/test`);
 
 var Bear = require('./app/models/bear');
 
@@ -19,7 +23,6 @@ var Bear = require('./app/models/bear');
 var router = express.Router(); //get an instance of the express Router
 
 router.use(function(req, res, next) {
-
     console.log('Something is Happening. Our router is being used!')
     next();
 })
@@ -28,7 +31,17 @@ router.get('/', function(req, res) {
     res.json({message: 'hooray! welcome to our api!'}); //test routes to make sure our server is running from the main page
 })
 
-
+router.route('/bears')
+  .post(function(req, res) {
+      var bear = new Bear();
+      bear.name = req.body.name;
+      bear.save(function(err) {
+          if (err) {
+              console.log('THIS IS ERR', err);
+          }
+          res.json({message: 'BEAR CREATED!'})
+      })
+  })
 
 
 
