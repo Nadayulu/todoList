@@ -79,6 +79,16 @@ router.route('/bears/:bear_id')
           })
       })
   })
+  .delete(function(req, res) {
+      Bear.remove({
+          _id: req.params.bear_id
+      }, function(err, bear) {
+          if (err)
+            res.send("coudlnt delete the bear", err)
+
+          res.json({ message: "Deletion Complete!"});
+      })
+  })
 
 //REGISTERING OUR ROUTES
 app.use('/api', router); // all of our routes will be prefixed with  /api
