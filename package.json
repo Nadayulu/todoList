@@ -5,9 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "start",
-    "start": "nodemon server.js",
-    "mongod": "C:\\Program Files/MongoDB/Server/3.6"
-
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",
